@@ -92,7 +92,7 @@ const CreateRestaurantForm = () => {
           className='space-y-4'
         >
           <Grid container spacing={2}>
-            <Grid item className="flex flex-wrap gap-5" size={{ xs:12 }}>
+            <Grid className="flex flex-wrap gap-5" size={{ xs:12 }}>
               <input 
                 id="fileInput"
                 type="file"
@@ -139,7 +139,7 @@ const CreateRestaurantForm = () => {
                 }
               </div>
             </Grid>
-            <Grid item size={{ xs:12 }}>
+            <Grid size={{ xs:12 }}>
               <TextField 
                 fullWidth 
                 id="name"
@@ -152,7 +152,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12 }}>
+            <Grid size={{ xs:12 }}>
               <TextField 
                 fullWidth 
                 id="description"
@@ -165,7 +165,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
               <TextField 
                 fullWidth 
                 id="cuisineType"
@@ -178,7 +178,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
               <TextField 
                 fullWidth 
                 id="openingHours"
@@ -191,7 +191,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12 }}>
+            <Grid size={{ xs:12 }}>
               <TextField 
                 fullWidth 
                 id="streetAddress"
@@ -204,7 +204,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:3 }}>
+            <Grid size={{ xs:12, lg:3 }}>
               <TextField 
                 fullWidth 
                 id="city"
@@ -217,7 +217,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:3 }}>
+            <Grid size={{ xs:12, lg:3 }}>
               <TextField 
                 fullWidth 
                 id="stateProvince"
@@ -230,7 +230,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12,lg:3 }}>
+            <Grid size={{ xs:12,lg:3 }}>
               <TextField 
                 fullWidth 
                 id="pinCode"
@@ -243,7 +243,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:3 }}>
+            <Grid size={{ xs:12, lg:3 }}>
               <TextField 
                 fullWidth 
                 id="country"
@@ -256,7 +256,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
               <TextField 
                 fullWidth 
                 id="email"
@@ -269,7 +269,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
               <TextField 
                 fullWidth 
                 id="mobile"
@@ -282,7 +282,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
               <TextField 
                 fullWidth 
                 id="instagram"
@@ -295,7 +295,7 @@ const CreateRestaurantForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
               <TextField 
                 fullWidth 
                 id="twitter"

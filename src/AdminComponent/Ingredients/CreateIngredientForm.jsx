@@ -7,8 +7,8 @@ const CreateIngredientForm = () => {
 
     const [formData,setFormData] = useState({
         name:"", 
-        ingredientCategoryId:null,
-        restaurantId:null
+        ingredientCategoryId:'',
+        restaurantId:''
     });
     
     const dispatch = useDispatch();

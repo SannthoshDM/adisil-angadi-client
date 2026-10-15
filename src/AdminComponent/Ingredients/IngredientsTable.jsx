@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIngredientsOfRestaurant, updateStockOfIngredient } from '../../components/State/Ingredients/IngredientsAction';
 
 
-const orders = [1,1,1,1,1,1,1,1,1];
 
 const style = {
   position: 'absolute',
@@ -54,9 +53,13 @@ const IngredientsTable = () => {
         <Card className='mt-1'>
             <CardHeader 
                 action={
-                    <IconButton onClick={handleOpen} aria-label="settings">
-                        <Create />
-                    </IconButton>
+                    <Button 
+                        variant='contained'
+                        onClick={handleOpen}
+                        endIcon={<Create />}
+                    >
+                        Create Food Ingredient
+                    </Button>
                 }
                 title={"Ingredients"}
                 sx={{ pt:2, alignItems:"center" }}

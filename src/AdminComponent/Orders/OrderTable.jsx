@@ -170,6 +170,7 @@ const OrderTable = ({item}) => {
                     </div>
                     <div>
                         <Button 
+                            component="span"
                             className="update-order-status-button" 
                             sx={{ color: "#8ec42f" }} 
                             variant='outlined'
@@ -252,30 +253,32 @@ const OrderTable = ({item}) => {
                                             {value.food.name}
                                         </Typography>
 
-                                        <Box>
-                                            <Typography variant='caption' color='text.secondary' display="block" sx={{ mb: 0.5 }}>
-                                                Added Ingredients
-                                            </Typography>
+                                        {
+                                            value.ingredients.length === 0 ? <></> :
+                                            <Box>
+                                                <Typography variant='caption' color='text.secondary' display="block" sx={{ mb: 0.5 }}>
+                                                    Added Ingredients
+                                                </Typography>
 
-                                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                                {
-                                                    value.ingredients.map((ingredient, idx) => (
-                                                        <Chip 
-                                                            key={idx}
-                                                            label={ingredient}
-                                                            size='small'
-                                                            variant='outlined'
-                                                            sx={{
-                                                                backgroundColor: "#c3ed7b",
-                                                                color: "#000000"
-                                                            }}
-                                                        />
-                                                    ))
-                                                }
+                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                                    {
+                                                        value.ingredients.map((ingredient, idx) => (
+                                                            <Chip 
+                                                                key={idx}
+                                                                label={ingredient}
+                                                                size='small'
+                                                                variant='outlined'
+                                                                sx={{
+                                                                    backgroundColor: "#c3ed7b",
+                                                                    color: "#000000"
+                                                                }}
+                                                            />
+                                                        ))
+                                                    }
 
+                                                </Box>
                                             </Box>
-                                        </Box>
-
+                                        }
                                     </Box>
 
                                     {/* Quantity & Price */}

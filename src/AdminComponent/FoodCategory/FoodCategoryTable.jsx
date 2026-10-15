@@ -1,4 +1,4 @@
-import { Box, Card, CardActions, CardHeader, IconButton, Modal, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Box, Button, Card, CardActions, CardHeader, Modal, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect } from 'react'
 import Paper from '@mui/material/Paper';
 import { Create, Delete } from '@mui/icons-material';
@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurantsCategory } from '../../components/State/Restaurant/RestaurantAction';
 
 
-const orders = [1,1,1,1,1,1,1,1,1];
 
 const style = {
   position: 'absolute',
@@ -46,9 +45,13 @@ const FoodCategoryTable = () => {
         <Card className='mt-1'>
             <CardHeader 
                 action={
-                    <IconButton onClick={handleOpen} aria-label="settings">
-                        <Create />
-                    </IconButton>
+                    <Button 
+                        variant='contained'
+                        onClick={handleOpen} 
+                        endIcon={<Create />}
+                    >
+                        Create Food Category
+                    </Button>
                 }
                 title={"Food Category"}
                 sx={{ pt:2, alignItems:"center" }}

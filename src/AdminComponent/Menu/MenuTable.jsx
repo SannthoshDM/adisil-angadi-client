@@ -1,20 +1,18 @@
-import { Avatar, Box, Card, CardActions, CardHeader, Chip, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Avatar, Box, Button, Card, CardActions, CardHeader, Chip, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect } from 'react'
 import Paper from '@mui/material/Paper';
 import { Create, Delete } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIngredientsOfRestaurant } from '../../components/State/Ingredients/IngredientsAction';
-import { deleteFoodAction, getMenuItemsByRestaurantId } from '../../components/State/Menu/MenuAction';
+import { deleteFoodAction, getMenuItemsByRestaurantId, updateMenuItemsAvailability } from '../../components/State/Menu/MenuAction';
 
 
-const orders = [1,1,1,1,1,1,1,1,1];
 
 
 const MenuTable = () => {
 
     const navigate = useNavigate();
-    // const { restaurant, ingredients } = 
     const { restaurant, ingredients, menu } = useSelector(store => store);
     const dispatch = useDispatch();
     const token = localStorage.getItem("jwt");
@@ -44,15 +42,25 @@ const MenuTable = () => {
         dispatch(deleteFoodAction({foodId, token}));
     }
 
+    const handleUpdateStock = (foodId) => {
+        console.log("INSIDE UPDATE FOOD AVAILABILTY for the foodid : ",foodId);
+
+        dispatch(updateMenuItemsAvailability({foodId,token}));
+    }
+
 
   return (
     <Box>
         <Card className='mt-1'>
             <CardHeader 
                 action={
-                    <IconButton onClick={() => navigate("/admin/restaurant/add-menu")} aria-label="settings">
-                        <Create />
-                    </IconButton>
+                    <Button 
+                        variant="contained" 
+                        endIcon={<Create />}
+                        onClick={() => navigate("/admin/restaurant/add-menu")}
+                    >
+                        Create Food
+                    </Button>
                 }
                 title={"Menu"}
                 sx={{ pt:2, alignItems:"center" }}
@@ -92,7 +100,19 @@ const MenuTable = () => {
                                     }
                                 </TableCell>
                                 <TableCell align="right">₹{item.price}</TableCell>
-                                <TableCell align="right">{item.available ? "In stock" : "Out of Stock"}</TableCell>
+                                {/* <TableCell align="right">{item.available ? "In stock" : "Out of Stock"}</TableCell> */}
+                                <TableCell align='right'>
+                                    <Button 
+                                        onClick={() => handleUpdateStock(item.id)} 
+                                        variant='contained'
+                                        className='py-[1rem] px-[2rem]'
+                                        color={ item.available ? "success" : "error"}
+                                    >
+                                        {
+                                            item.available ? "In Stock" : "Out of Stock"
+                                        }
+                                    </Button> 
+                                </TableCell>
                                 <TableCell align="right">
                                     {
                                         <IconButton sx={{ color:"red" }} onClick={() => handleDeleteFood(item.id)}>

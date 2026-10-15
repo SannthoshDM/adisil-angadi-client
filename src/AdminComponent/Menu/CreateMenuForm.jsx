@@ -81,7 +81,7 @@ const CreateMenuForm = () => {
           className='space-y-4'
         >
           <Grid container spacing={2}>
-            <Grid item className="flex flex-wrap gap-5" size={{ xs:12 }}>
+            <Grid className="flex flex-wrap gap-5" size={{ xs:12 }}>
               <input 
                 id="fileInput"
                 type="file"
@@ -128,7 +128,7 @@ const CreateMenuForm = () => {
                 }
               </div>
             </Grid>
-            <Grid item size={{ xs:12 }}>
+            <Grid size={{ xs:12 }}>
               <TextField 
                 fullWidth 
                 id="name"
@@ -154,7 +154,7 @@ const CreateMenuForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
               <TextField 
                 fullWidth 
                 id="price"
@@ -167,7 +167,7 @@ const CreateMenuForm = () => {
 
               </TextField>
             </Grid>
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
                     <Select
@@ -183,13 +183,10 @@ const CreateMenuForm = () => {
                           <MenuItem value={item}>{item.name}</MenuItem>
                         ))
                       }
-                        {/* <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem> */}
                     </Select>
                 </FormControl>
             </Grid>
-            <Grid item size={{ xs:12 }}>
+            <Grid size={{ xs:12 }}>
                 <FormControl fullWidth >
                     <InputLabel id="demo-multiple-chip-label">Ingredients</InputLabel>
                     <Select
@@ -226,7 +223,7 @@ const CreateMenuForm = () => {
                 </FormControl>
             </Grid>
 
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Is Vegetarian</InputLabel>
                     <Select
@@ -243,7 +240,7 @@ const CreateMenuForm = () => {
                 </FormControl>
             </Grid>
 
-            <Grid item size={{ xs:12, lg:6 }}>
+            <Grid size={{ xs:12, lg:6 }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Is Seasonal</InputLabel>
                     <Select

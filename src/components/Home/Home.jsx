@@ -47,17 +47,21 @@ const Home = () => {
             <p className='text-2xl font-semibold text-gray-400 py-3 pb-10'>Top Meals</p>
             <MultiItemCarousel/>
         </section>
-        <section className='px-5 lg:px-20 pt-10'>
-            <h1 className='text-2xl font-semibold text-gray-400 pb-5'>Order From Our Handpicked Favorites</h1>
-            {/* in below div tag i have remove justify-around inside className -> for to show restaurat cards in sequence order*/}
-            <div className='flex flex-wrap items-center gap-5'>
-                {
-                    restaurant.restaurants.map((item) => (
-                        <RestaurantCard item = {item}/>
-                    ))
-                }
-            </div>
-        </section>
+        {
+            restaurant?.restaurants.length === 0 ? <></> : 
+            <section className='px-5 lg:px-20 pt-10'>
+                <h1 className='text-2xl font-semibold text-gray-400 pb-5'>Order From Our Handpicked Favorites</h1>
+                {/* in below div tag i have remove justify-around inside className -> for to show restaurat cards in sequence order*/}
+                <div className='flex flex-wrap items-center gap-5'>
+                    {
+                        restaurant.restaurants.map((item) => (
+                            <RestaurantCard item = {item}/>
+                        ))
+                    }
+                </div>
+            </section>
+        }
+        
     </div>
   );
 }

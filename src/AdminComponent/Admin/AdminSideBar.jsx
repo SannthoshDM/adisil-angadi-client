@@ -1,7 +1,7 @@
 import { AdminPanelSettings, Category, Dashboard, Event, Fastfood, Logout, ShoppingBag } from '@mui/icons-material';
 import ShopTwoIcon from '@mui/icons-material/ShopTwo';
 import { Divider, Drawer, useMediaQuery } from '@mui/material';
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../components/State/Authentication/AuthAction';
@@ -80,13 +80,16 @@ const AdminSideBar = ({ handleClose }) => {
                <div className='w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center text-xl gap-6.5 pt-12'>
                     {
                         sideBarItems.map((item, i) => (
-                            <>
-                                <div onClick={() => handleNavigate(item)} className='px-5 flex items-center gap-5 cursor-pointer'>
+                            <Fragment key={i}>
+                                <div 
+                                    onClick={() => handleNavigate(item)} 
+                                    className='px-5 flex items-center gap-5 cursor-pointer'
+                                >
                                     {item.icon}
                                     <span>{item.title}</span>
                                 </div>
                                 { i !== sideBarItems.length-1 && <Divider /> }
-                            </>
+                            </Fragment>
                         ))
                     }
                </div>
