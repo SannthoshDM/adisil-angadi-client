@@ -25,7 +25,10 @@ function App() {
   },[auth.token]);
 
   useEffect(() => {
-    dispatch(getRestaurantByUserId(auth.token || token));
+    if(auth.user?.role !== 'ROLE_CUSTOMER')
+    {
+      dispatch(getRestaurantByUserId(auth.token || token));
+    }
   },[auth.user])
 
   return (

@@ -12,7 +12,7 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const token = localStorage.getItem("jwt");
-    const {restaurant} = useSelector(store => store);
+    const {auth, restaurant} = useSelector(store => store);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -48,14 +48,14 @@ const Home = () => {
             <MultiItemCarousel/>
         </section>
         {
-            restaurant?.restaurants.length === 0 ? <></> : 
+            auth.user === null ? <></> : 
             <section className='px-5 lg:px-20 pt-10'>
                 <h1 className='text-2xl font-semibold text-gray-400 pb-5'>Order From Our Handpicked Favorites</h1>
                 {/* in below div tag i have remove justify-around inside className -> for to show restaurat cards in sequence order*/}
                 <div className='flex flex-wrap items-center gap-5'>
                     {
                         restaurant.restaurants.map((item) => (
-                            <RestaurantCard item = {item}/>
+                            <RestaurantCard key={item.id} item = {item}/>
                         ))
                     }
                 </div>

@@ -22,6 +22,7 @@ const Navbar = () => {
   }
 
   console.log("INSIDE NAV BAR ----------- : cart : ",cart);
+  console.log("INSIDE NAV BAR =========== : auth : ",auth);
 
   return (
     <div className='px-5 sticky top-0 z-50 py-[.8rem] bg-[#8ec42f] lg:px-20 flex justify-between'>

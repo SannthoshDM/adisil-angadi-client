@@ -28,7 +28,7 @@ const RestaurantCard = ({item}) => {
     }
 
   return (
-    <Card className='w-[15rem]'>
+    <Card key={item.id} className='w-[15rem]'>
         <div className={`${item.open ? 'cursor-pointer' : "cursor-not-allowed"} relative`}>
             <img className='w-full h-[15rem] rounded-t-md object-cover'  src={item.images[0]} alt="" />
             <Chip 
@@ -38,10 +38,10 @@ const RestaurantCard = ({item}) => {
                 label={item.open ? "open" : "closed"}
             />
         </div>
-        <div className='p-4 textPart lg:flex w-full justify-between'>
-            <div onClick={handleNavigateToRestaurant} className='space-y-1 cursor-pointer' >
+        <div className={`${item.open ? 'cursor-pointer' : "cursor-not-allowed"} p-4 textPart lg:flex w-full justify-between`}>
+            <div onClick={handleNavigateToRestaurant} className='space-y-1' >
                 <p className='font-semibold text-lg'>{item.name}</p>
-                <p className='text-gray-500 text-sm'>
+                <p className='text-gray-500 text-sm line-clamp-4'>
                     {item.description}
                 </p>
             </div>

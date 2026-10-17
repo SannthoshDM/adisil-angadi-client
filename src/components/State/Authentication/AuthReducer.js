@@ -1,5 +1,5 @@
-import { isPresentInFavorites } from "../../config/logic";
-import { ADD_TO_FAVORITE_FAILURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./AuthActionType";
+import { isPresentInFavorites, isPresentInUserAddress } from "../../config/logic";
+import { ADD_TO_FAVORITE_FAILURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, ADD_USER_ADDRESS_FAILURE, ADD_USER_ADDRESS_REQUEST, ADD_USER_ADDRESS_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./AuthActionType";
 
 const initialState={
     user:null,
@@ -7,6 +7,7 @@ const initialState={
     error:null,
     token:null,
     favorites:[],
+    addresses:[],
     success:null
 }
 
@@ -17,6 +18,7 @@ export const authReducer=(state=initialState,action)=>{
         case LOGIN_REQUEST:
         case GET_USER_REQUEST:
         case ADD_TO_FAVORITE_REQUEST:
+        case ADD_USER_ADDRESS_REQUEST:
             return {...state,isLoading:true,error:null,success:null};
 
         case REGISTER_SUCCESS:
@@ -24,7 +26,7 @@ export const authReducer=(state=initialState,action)=>{
             return {...state,isLoading:false,token:action.payload,success:"Register Success"};
 
         case GET_USER_SUCCESS:
-            return {...state,isLoading:false,user:action.payload,favorites:action.payload.favorites};
+            return {...state,isLoading:false,user:action.payload,addresses:action.payload.addresses,favorites:action.payload.favorites};
 
         case ADD_TO_FAVORITE_SUCCESS: 
             return {
@@ -36,6 +38,16 @@ export const authReducer=(state=initialState,action)=>{
                     : [action.payload, ...state.favorites]
             };
 
+        case ADD_USER_ADDRESS_SUCCESS: 
+            return {
+                ...state,
+                isLoading:false,
+                error:null,
+                addresses: isPresentInUserAddress(state.addresses, action.payload)
+                ? state.addresses.filter((item)=> item.id !== action.payload)
+                : [action.payload, ...state.addresses]
+            };
+
         case LOGOUT:
             return initialState;
 
@@ -43,6 +55,7 @@ export const authReducer=(state=initialState,action)=>{
         case LOGIN_FAILURE:
         case GET_USER_FAILURE:
         case ADD_TO_FAVORITE_FAILURE:
+        case ADD_USER_ADDRESS_FAILURE:
             return {...state,isLoading:false,error:action.payload,success:null};
     
         default:

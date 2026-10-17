@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { getUsersOrders } from '../State/Order/OrderAction';
 
 
-const orderItems = [1,1,1,1,1];
 
 const Orders = () => {
   

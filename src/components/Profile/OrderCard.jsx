@@ -20,17 +20,6 @@ const getStatusColor = (status) => {
 
 const OrderCard = ({ item }) => {
 
-    let  orderStatusButtonColor = false;
-
-    if(item.orderStatus === "PENDING")
-    {
-        orderStatusButtonColor = false;
-    }
-    else if( item.orderStatus === "COMPLETED" )
-    {
-        orderStatusButtonColor = true;
-    }
-
     return (
         // here when i hover accordian, these effects will be applied to the hovering accordian
     <Accordion sx={{
@@ -69,18 +58,16 @@ const OrderCard = ({ item }) => {
                     <p className='font-sans text-base font-semibold'>Delivery Address : <span className='italic font-light'>{item.deliveryAddress.streetAddress}, {item.deliveryAddress.city}, {item.deliveryAddress.state}, {item.deliveryAddress.pincode}</span></p>
                     <p className='font-sans text-base font-semibold'>Total Amount : <span className='italic font-light'>₹{item.totalAmount}</span></p>
                     <p className='font-sans text-base font-semibold'>Total Items : <span className='italic font-light'>{item.totalItem}</span></p>
-                    {/* <p className='text-gray-500 custom-description'>{item.description}</p> */}
                 </div>
             </div>
           </div>
           {/* Container to push the button to the right, near the expand icon */}
             <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: 16 }} onClick={(e) => e.stopPropagation()}>
                 <Button 
+                    component="span"
                     size="small" 
                     variant="contained" 
-                    // onClick={() => alert('Button clicked!')}
                     color={getStatusColor(item.orderStatus)}
-                    // color={orderStatusButtonColor ? "success" : "error"}
                 >
                     {item.orderStatus}
                 </Button>
@@ -136,30 +123,32 @@ const OrderCard = ({ item }) => {
                                         {value.food.name}
                                     </Typography>
 
-                                    <Box>
-                                        <Typography variant='caption' color='text.secondary' display="block" sx={{ mb: 0.5 }}>
-                                            Added Ingredients
-                                        </Typography>
+                                    {
+                                        value.ingredients.length === 0 ? <></> :
+                                        <Box>
+                                            <Typography variant='caption' color='text.secondary' display="block" sx={{ mb: 0.5 }}>
+                                                Added Ingredients
+                                            </Typography>
 
-                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                            {
-                                                value.ingredients.map((ingredient, idx) => (
-                                                    <Chip 
-                                                        key={idx}
-                                                        label={ingredient}
-                                                        size='small'
-                                                        variant='outlined'
-                                                        sx={{
-                                                            backgroundColor: "#c3ed7b",
-                                                            color: "#000000"
-                                                        }}
-                                                    />
-                                                ))
-                                            }
+                                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                                {
+                                                    value.ingredients.map((ingredient, idx) => (
+                                                        <Chip 
+                                                            key={idx}
+                                                            label={ingredient}
+                                                            size='small'
+                                                            variant='outlined'
+                                                            sx={{
+                                                                backgroundColor: "#c3ed7b",
+                                                                color: "#000000"
+                                                            }}
+                                                        />
+                                                    ))
+                                                }
 
+                                            </Box>
                                         </Box>
-                                    </Box>
-
+                                    }
                                 </Box>
 
                                 {/* Quantity & Price */}
@@ -188,33 +177,5 @@ const OrderCard = ({ item }) => {
     );
 };
 
-
-
-
-
-
-
-// const OrderCard = () => {
-//   return (
-//     <Card >
-//         <div className='flex justify-between items-center p-5'>
-//             <div className='flex items-center space-x-5'>
-//                 <img 
-//                     className='h-16 w-16'
-//                     src="https://images.pexels.com/photos/31537385/pexels-photo-31537385.jpeg" 
-//                     alt="" 
-//                 />
-//                 <div>
-//                     <p>Biriyani</p>
-//                     <p>$499</p>
-//                 </div>
-//             </div>
-//             <div>
-//                 <Button className='cursor-not-allowed'>PENDING</Button>
-//             </div>
-//         </div>
-//     </Card>
-//   );
-// }
 
 export default OrderCard;

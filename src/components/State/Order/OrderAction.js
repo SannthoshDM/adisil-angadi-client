@@ -1,4 +1,5 @@
 import { api, API_URL } from "../../config/api";
+import { CLEAR_CART_SUCCESS } from "../Cart/CartActionType";
 import * as OrderActionTypes from "./OrderActionType";
 
 
@@ -20,6 +21,7 @@ export const createOrder = (reqData) => {
             
             console.log("Success : Created Order by User : ",response.data);
             dispatch({ type:OrderActionTypes.CREATE_ORDER_SUCCESS , payload:response.data });
+            dispatch({ type:CLEAR_CART_SUCCESS, payload:null});
         }
         catch(error)
         {

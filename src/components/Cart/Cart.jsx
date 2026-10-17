@@ -7,11 +7,9 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
 import { createOrder } from '../State/Order/OrderAction';
+import { useNavigate } from 'react-router-dom';
 
 
-// const cartItems=[1,1,1,1]
-
-const customerAddresses = [1,1,1,1]
 
 export const style = {
   position: 'absolute',
@@ -46,6 +44,7 @@ const Cart = () => {
     const { cart } = useSelector(store => store);
     console.log("INSIDE CART FILE : cart VALUES ",cart);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const itemTotal = cart.cart? cart.cart.total : 0;
     const deliveryCharges = itemTotal ? 50 : 0;
@@ -63,29 +62,36 @@ const Cart = () => {
     const handleClose = () => setOpen(false);
 
     const handleSubmit = (values) => {
-    console.log("fome value : ",values);
+        console.log("fome value : ",values);
 
-    const data = {
-        token: localStorage.getItem("jwt"),
-        order:{
-            restaurantId: cart.cart?.item[0].food?.restaurant.id,
-            deliveryAddress: {
-                streetAddress: values.streetAddress,
-                city: values.city,
-                state: values.state,
-                pinCode: values.pinCode,
-                country: "India"
-            },
-            totalBillAmount: totalBillAmount
+        const data = {
+            token: localStorage.getItem("jwt"),
+            order:{
+                restaurantId: cart.cart?.item[0].food?.restaurant.id,
+                addressId: values.id,
+                // deliveryAddress: {
+                    // id: values.id
+                    // streetAddress: values.streetAddress,
+                    // city: values.city,
+                    // state: values.state,
+                    // pinCode: values.pinCode,
+                    // country: "India"
+                // },
+                totalBillAmount: totalBillAmount
+            }
         }
-    }
 
-    dispatch(createOrder(data));
+    dispatch(createOrder(data))
+    .then((responeData) => 
+        {
+            navigate("/my-profile/orders");
+    })
+    .catch((err) => console.log("IN CART : ERROR ON PLACING ORDER : ",err));
 
     // After submit the new delivery address and create order request is passed , we have close the model automatically 
     // so here we are closing the address modal
-    handleClose();
-}
+        handleClose();
+    }
 
 
   return (
@@ -140,7 +146,7 @@ const Cart = () => {
                                     ))
                                 }
 
-                                <Card className="flex gap-5 w-64 p-5">
+                                {/* <Card className="flex gap-5 w-64 p-5">
                                     <AddLocationAltIcon />
                                     <div className="space-y-3 text-gray-500">
                                         <h1 className="font-semibold text-lg text-white">
@@ -148,7 +154,7 @@ const Cart = () => {
                                         </h1>
                                         <Button variant="outlined" fullWidth onClick={handleOpenAddressModal}>Add</Button>
                                     </div>
-                                </Card>
+                                </Card> */}
                             </div>
                         </div>
                     ) : ( 
@@ -160,7 +166,7 @@ const Cart = () => {
 
         </main>
 
-        <Modal
+        {/* <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
@@ -187,9 +193,6 @@ const Cart = () => {
                                             name="streetAddress"
                                             render={ msg => <span className='text-red-600'>{msg}</span>}
                                         >
-                                            {/* {
-                                                (msg) => <span className='text-red-600'>{msg}</span>
-                                            } */}
                                         </ErrorMessage>
                                     }
                                 />
@@ -207,9 +210,6 @@ const Cart = () => {
                                             name="city"
                                             render={ msg => <span className='text-red-600'>{msg}</span>}
                                         >
-                                            {/* {
-                                                (msg) => <span className='text-red-600'>{msg}</span>
-                                            } */}
                                         </ErrorMessage>
                                     }
                                 />
@@ -227,9 +227,6 @@ const Cart = () => {
                                             name="state"
                                             render={ msg => <span className='text-red-600'>{msg}</span>}
                                         >
-                                            {/* {
-                                                (msg) => <span className='text-red-600'>{msg}</span>
-                                            } */}
                                         </ErrorMessage>
                                     }
                                 />
@@ -248,9 +245,6 @@ const Cart = () => {
                                             name="pinCode"
                                             render={ msg => <span className='text-red-600'>{msg}</span>}
                                         >
-                                            {/* {
-                                                (msg) => <span className='text-red-600'>{msg}</span>
-                                            } */}
                                         </ErrorMessage>
                                     }
                                 />
@@ -262,7 +256,7 @@ const Cart = () => {
                     </Form>
                 </Formik>
             </Box>
-        </Modal>
+        </Modal> */}
 
     </div>
   );
